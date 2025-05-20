@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ali Hamza - Medical Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+    <style>
+        :root {
+            --primary: #2A5C82;
+            --secondary: #3D9970;
+            --accent: #FF7F50;
+            --background: #F8F9FA;
+            --text: #2D3436;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #bgVideo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            animation: zoom 20s infinite alternate;
+        }
+
+        @keyframes zoom {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .quote {
+            font-size: 1rem;
+            color: var(--text);
+            font-style: italic;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            padding: 20px;
+            background: var(--background);
+            border-radius: 10px;
+        }
+
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-list i {
+            color: var(--accent);
+        }
+
+        .experience-item, .project-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .experience-item:last-child,
+        .project-item:last-child {
+            border-bottom: none;
+        }
+
+        .skills-used {
+            font-style: italic;
+            color: var(--secondary);
+            margin-top: 10px;
+        }
+
+        .certifications-list {
+            list-style: none;
+        }
+
+        .certifications-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .certifications-list i {
+            color: var(--accent);
+        }
+
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .hobby-item {
+            padding: 15px;
+            background: var(--background);
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .hobby-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .hobby-item i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: var(--secondary);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid, .hobbies-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline id="bgVideo">
+            <source src="background.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <img src="profile.jpg" alt="Ali Hamza" class="profile-img">
+            <h1>Ali Hamza</h1>
+            <p class="subtitle">Aspiring Medical Doctor | Healthcare Advocate</p>
+            <p class="quote">"The physician's highest calling is to serve with both knowledge and compassion"</p>
+        </header>
+
+        <main>
+            <!-- About Section -->
+            <section class="section">
+                <h2><i class="fas fa-user-md"></i> About Me</h2>
+                <p>Pre-medical student from Pakistan passionate about improving healthcare access in underserved areas. Experienced in healthcare settings and customer service with strong communication and teamwork skills. Committed to becoming a doctor and contributing to global healthcare innovation.</p>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="section">
+                <h2><i class="fas fa-medal"></i> Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-stethoscope"></i> Medical Skills</h3>
+                        <ul class="skill-list">
+                            <li><i class="fas fa-check"></i> Human Biology</li>
+                            <li><i class="fas fa-check"></i> Anatomy & Physiology</li>
+                            <li><i class="fas fa-check"></i> Public Health Awareness</li>
+                            <li><i class="fas fa-check"></i> Medical Terminology</li>
+                            <li><i class="fas fa-check"></i> Vaccination Campaigns (WHO)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-briefcase"></i> Professional Skills</h3>
+                        <ul class="skill-list">
+                            <li><i class="fas fa-check"></i> Communication</li>
+                            <li><i class="fas fa-check"></i> Team Leadership</li>
+                            <li><i class="fas fa-check"></i> Problem Solving</li>
+                            <li><i class="fas fa-check"></i> Time Management</li>
+                            <li><i class="fas fa-check"></i> Emotional Intelligence</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-laptop-code"></i> Technical Skills</h3>
+                        <ul class="skill-list">
+                            <li><i class="fas fa-check"></i> MS Office Suite</li>
+                            <li><i class="fas fa-check"></i> Report Writing</li>
+                            <li><i class="fas fa-check"></i> English (Proficient)</li>
+                            <li><i class="fas fa-check"></i> Urdu (Native)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="section">
+                <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+                <div class="project-item">
+                    <h3>COVID-19 Vaccination Awareness Campaign</h3>
+                    <p>Raised awareness in local communities about COVID-19 vaccination. Educated villagers, collected data, and supported health workers.</p>
+                    <p class="skills-used"><strong>Skills Applied:</strong> WHO guidelines, field communication, public health</p>
+                </div>
+                <div class="project-item">
+                    <h3>Dispensary Internship Experience</h3>
+                    <p>Assisted in patient care, medicine handling, and documentation. Gained practical exposure to rural health challenges.</p>
+                    <p class="skills-used"><strong>Skills Applied:</strong> Basic medical tools, patient interaction, observation</p>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="section">
+                <h2><i class="fas fa-briefcase"></i> Experience</h2>
+                <div class="experience-item">
+                    <h3>Customer Service Assistant</h3>
+                    <p>Local Retail Shop, Pattoki | 2023 (Part-Time)</p>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-caret-right"></i> Assisted customers with purchases and issue resolution</li>
+                        <li><i class="fas fa-caret-right"></i> Managed daily operations and worked collaboratively with staff</li>
+                        <li><i class="fas fa-caret-right"></i> Developed key professional skills like communication and time management</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section">
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                <div class="experience-item">
+                    <h3>Matriculation: 1078/1100 (98%)</h3>
+                    <p>Muslim Model High School, Pattoki</p>
+                </div>
+                <div class="experience-item">
+                    <h3>Intermediate (Pre-Medical): 1101/1200 (91.7%)</h3>
+                    <p>Punjab College, Pattoki</p>
+                </div>
+                <div class="experience-item">
+                    <h3>MDCAT Score: 186</h3>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section class="section">
+                <h2><i class="fas fa-certificate"></i> Certifications</h2>
+                <ul class="certifications-list">
+                    <li><i class="fas fa-certificate"></i> WHO Certificate: National Deployment and Vaccination Plans</li>
+                    <li><i class="fas fa-certificate"></i> Emotional Intelligence for Leadership</li>
+                    <li><i class="fas fa-certificate"></i> English Proficiency: B2 Level Certificate</li>
+                </ul>
+            </section>
+
+            <!-- Hobbies Section -->
+            <section class="section">
+                <h2><i class="fas fa-heart"></i> Hobbies & Interests</h2>
+                <div class="hobbies-grid">
+                    <div class="hobby-item">
+                        <i class="fas fa-book-medical"></i>
+                        <h4>Reading medical articles</h4>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="fas fa-hands-helping"></i>
+                        <h4>Health campaign volunteering</h4>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="fas fa-table-tennis"></i>
+                        <h4>Playing badminton</h4>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="fas fa-running"></i>
+                        <h4>Running (Silver medalist – 400m)</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="section">
+                <h2><i class="fas fa-envelope"></i> Contact</h2>
+                <div class="contact-grid">
+                    <a href="mailto:hamzaliaqat7989@gmail.com" class="contact-card">
+                        <i class="fas fa-envelope fa-2x"></i>
+                        <h3>Email</h3>
+                        <p>hamzaliaqat7989@gmail.com</p>
+                    </a>
+                    <a href="tel:+923264519629" class="contact-card">
+                        <i class="fas fa-phone fa-2x"></i>
+                        <h3>Phone</h3>
+                        <p>+92 326 4519629</p>
+                    </a>
+                    <a href="https://instagram.com/unflagging_" target="_blank" class="contact-card">
+                        <i class="fab fa-instagram fa-2x"></i>
+                        <h3>Instagram</h3>
+                        <p>@unflagging_</p>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Ali Hamza. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
